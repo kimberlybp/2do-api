@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 const validate = require('../../middleware/validate');
-const { userValidation } = require('../../validations');
-const userController = require('../../controllers/userController');
+const validation = require('../../validations').userValidation;
+const controller = require('../../controllers/userController');
 
 router
   .route('/')
-  .post(validate(userValidation.createUser), userController.createUser);
+  .post(validate(validation.createUser), controller.createUser);
+
+router
+  .route('/:id')
+  .get(auth, validate(validation.getUser), controller.getUser)
+  .put(auth, validate(validation.updateUser), controller.updateUser);
+
+router.route('/email/check').get(validate(validation.checkEmail), controller.checkEmail);
 
 module.exports = router;

@@ -31,10 +31,10 @@ const errorHandler = (err, req, res, next) => {
   };
 
   if (process.env.NODE_ENV === 'development') {
-    console.log("Error: " + err + "".red);
+    console.log('Error: ' + err + ''.red);
   }
 
-  console.log(response)
+  console.log(response);
 
   res.status(statusCode).send(response);
 };

@@ -6,9 +6,16 @@ const { httpStatus } = require('../utils/constants');
 const validate = (schema) => (req, res, next) => {
   const validSchema = pick(schema, ['params', 'query', 'body']);
   const object = pick(req, Object.keys(validSchema));
+  const options = {
+    errors: {
+      wrap: {
+        label: ''
+      }
+    }
+  };
   const { value, error } = Joi.compile(validSchema)
     .prefs({ errors: { label: 'key' }, abortEarly: false })
-    .validate(object);
+    .validate(object, options);
 
   if (error) {
     const errorMessage = error.details.map((details) => details.message).join(', ');

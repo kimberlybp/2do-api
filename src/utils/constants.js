@@ -8,4 +8,4 @@ const httpStatus = {
 
 module.exports = {
   httpStatus
-}
+};

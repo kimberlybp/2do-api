@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 const whitelist = [];
 
 // prep CORS firewall
-if (process.env.NODE_ENV == PROD_ENV) {
+if (process.env.NODE_ENV === PROD_ENV) {
     // TODO: UPDATE WHEN DEPLOYED TO PROD
 } else {
     whitelist.push('http://localhost:3000');
@@ -50,11 +50,6 @@ app.options('*', cors(corsOptions));
 
 // v1 api routes
 app.use('/v1', routes);
-
-// send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
-});
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
