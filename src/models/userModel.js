@@ -1,10 +1,8 @@
-'use strict';
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const isEmailValidator = require('validator').isEmail;
 
-const UserSchema = new Schema({
+const userSchema = new Schema({
   first_name: {
     type: String,
     required: 'First name required'
@@ -25,4 +23,11 @@ const UserSchema = new Schema({
   versionKey: false
 });
 
-module.exports = mongoose.model('Users', UserSchema);
+userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+  return !!user;
+};
+
+const User = mongoose.model('Users', userSchema);
+
+module.exports = User;

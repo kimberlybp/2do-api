@@ -1,16 +1,21 @@
-'use strict';
+const catchAsync = require('../utils/asyncCatch');
+const ApiError = require('../utils/ApiError');
+const { httpStatus } = require('../utils/constants');
 
-const mongoose = require('mongoose');
+const { User } = require('../models');
 
-const User = mongoose.model('Users');
+const createUser = catchAsync(async (req, res) => {
+  if (await User.isEmailTaken(req.body.email)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  }
+  let userBody = req.body;
+  userBody.created_at = new Date();
+  userBody.updated_at = new Date();
 
-exports.create_user = function(req, res) {
-  const newUser = new User(req.body);
-  // console.log(req);
-  newUser.save(function(err, task) {
-    if (err) {
-      res.send(err);
-    }
-    res.json(task);
-  });
-};
+  const user = await User.create(userBody);
+  res.status(httpStatus.CREATED).send(user);
+});
+
+module.exports = {
+  createUser
+}
