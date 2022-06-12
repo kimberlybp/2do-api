@@ -14,6 +14,7 @@ router
   .get(auth, validate(validation.getUser), controller.getUser)
   .put(auth, validate(validation.updateUser), controller.updateUser);
 
+router.route('/:sub').get(auth, validate(validation.getUserBySub), controller.getUserBySub);
 router.route('/email/check').get(validate(validation.checkEmail), controller.checkEmail);
 
 module.exports = router;

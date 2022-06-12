@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 const isEmailValidator = require('validator').isEmail;
 
 const userSchema = new Schema({
+  sub: {
+    type: String,
+    required: 'sub required'
+  },
   first_name: {
     type: String,
     required: 'First name required'
