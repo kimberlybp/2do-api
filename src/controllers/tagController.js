@@ -17,9 +17,9 @@ const getTag = catchAsync(async (req, res) => {
 });
 
 const getTagsbyUserId = catchAsync(async (req, res) => {
-  const tag = await Tag.findOne({ user_id: req.params.user_id });
-  if (!tag) throw new ApiError(httpStatus.NOT_FOUND, 'tag not found');
-  res.send(tag);
+  const tags = await Tag.find({ user_id: req.params.user_id });
+  if (!tags) throw new ApiError(httpStatus.NOT_FOUND, 'tags not found');
+  res.send(tags);
 });
 
 const updateTag = catchAsync(async (req, res) => {

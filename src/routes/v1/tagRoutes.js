@@ -15,7 +15,7 @@ router
   .delete(validate(validation.deleteTag), controller.deleteTag);
 
 router
-  .route('/:userId')
+  .route('/userId/:user_id')
   .get(validate(validation.getTagsbyUserId), controller.getTagsbyUserId);
 
 module.exports = router;

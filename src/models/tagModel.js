@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const tagSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
-    required: 'User ID required'
+    required: 'User ID required',
+    ref: 'Users'
   },
   name: {
     type: String,
