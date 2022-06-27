@@ -16,6 +16,6 @@ const taskListSchema = new Schema({
   versionKey: false
 });
 
-const TaskList = mongoose.model('TaskList', taskListSchema);
+const TaskList = mongoose.model('TaskLists', taskListSchema);
 
 module.exports = TaskList;
