@@ -32,10 +32,10 @@ const updateTag = catchAsync(async (req, res) => {
 
 const deleteTag = catchAsync(async (req, res) => {
   const tag = await Tag.findById(req.params.id);
-  if (!tag) throw new ApiError(httpStatus.NOT_FOUND, 'tag not found');
-  Task.updateMany({}, { $pull: { tags: tag._id } });
+  // if (!tag) throw new ApiError(httpStatus.NOT_FOUND, 'tag not found');
+  const result = await Task.updateMany({}, { $pull: { tags: tag._id } }).exec();
   tag.remove();
-  res.send({ deleted: true });
+  res.send({ deleted: true, result });
 });
 
 module.exports = {
