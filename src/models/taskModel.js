@@ -26,6 +26,8 @@ const moduleSchema = new Schema({
     type: String,
     required: 'Module code required'
   },
+  department: String,
+  faculty: String
 });
 
 const taskSchema = new Schema({
