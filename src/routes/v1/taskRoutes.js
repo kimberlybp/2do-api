@@ -11,7 +11,11 @@ router
   .post(controller.createTask);
 
 router
-  .route('/:userId')
+  .route('/userId/:user_id')
   .get(controller.getAllUserTasks);
+
+router
+  .route('/:id')
+  .put(controller.updateTask);
 
 module.exports = router;

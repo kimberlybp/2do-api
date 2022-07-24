@@ -16,7 +16,7 @@ const createTask = catchAsync(async (req, res) => {
 });
 
 const getAllUserTasks = catchAsync(async (req, res) => {
-  const tasks = await Task.find({ user_id: ObjectId(req.params.userId) }).populate('tags task_list');
+  const tasks = await Task.find({ user_id: ObjectId(req.params.user_id) }).populate('tags task_list');
   res.send(tasks);
 });
 
