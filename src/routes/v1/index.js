@@ -3,6 +3,7 @@ const userRoute = require('./userRoutes');
 const taskListRoute = require('./taskListRoutes');
 const tagRoute = require('./tagRoutes');
 const taskRoute = require('./taskRoutes');
+const notificationRoute = require('./notificationRoutes');
 
 const router = express.Router();
 
@@ -22,6 +23,10 @@ const defaultRoutes = [
   {
     path: '/tasks',
     route: taskRoute
+  },
+  {
+    path: '/notifications',
+    route: notificationRoute
   }
 ];
 
