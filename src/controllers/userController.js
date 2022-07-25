@@ -20,6 +20,12 @@ const getUser = catchAsync(async (req, res) => {
   res.send(user);
 });
 
+const getUserBySub = catchAsync(async (req, res) => {
+  const user = await User.findOne({sub: req.params.sub})
+  if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'user not found');
+  res.send(user);
+});
+
 const updateUser = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'user not found');
@@ -43,5 +49,6 @@ module.exports = {
   createUser,
   checkEmail,
   getUser,
+  getUserBySub,
   updateUser
 };
