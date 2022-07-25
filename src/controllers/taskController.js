@@ -31,8 +31,15 @@ const updateTask = catchAsync(async (req, res) => {
   res.send(task);
 })
 
+const deleteTask = catchAsync(async (req, res) => {
+  const task = await Task.findById(req.params.id);
+  task.remove();
+  res.send({ deleted: true });
+});
+
 module.exports = {
   createTask,
   getAllUserTasks,
-  updateTask
+  updateTask,
+  deleteTask
 };

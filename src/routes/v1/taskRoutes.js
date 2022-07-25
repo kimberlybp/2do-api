@@ -16,6 +16,7 @@ router
 
 router
   .route('/:id')
-  .put(controller.updateTask);
+  .put(controller.updateTask)
+  .delete(controller.deleteTask);
 
 module.exports = router;
