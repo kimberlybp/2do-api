@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../../middleware/auth');
-const validate = require('../../middleware/validate');
-//TODO: add back validation
+// const auth = require('../../middleware/auth');
+// const validate = require('../../middleware/validate');
+// TODO: add back validation + auth
 // const validation = require('../../validations').taskValidation;
 const controller = require('../../controllers/taskController');
 

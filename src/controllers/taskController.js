@@ -3,7 +3,7 @@ const ApiError = require('../utils/ApiError');
 const { httpStatus } = require('../utils/constants');
 
 const { Task } = require('../models');
-const ObjectId = require('mongoose').Types.ObjectId; 
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const createTask = catchAsync(async (req, res) => {
   const taskBody = req.body;
@@ -29,7 +29,7 @@ const updateTask = catchAsync(async (req, res) => {
 
   if (!task) throw new ApiError(httpStatus.NOT_FOUND, 'task not found');
   res.send(task);
-})
+});
 
 const deleteTask = catchAsync(async (req, res) => {
   const task = await Task.findById(req.params.id);

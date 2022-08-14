@@ -21,7 +21,7 @@ const getUser = catchAsync(async (req, res) => {
 });
 
 const getUserBySub = catchAsync(async (req, res) => {
-  const user = await User.findOne({sub: req.params.sub})
+  const user = await User.findOne({ sub: req.params.sub });
   if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'user not found');
   res.send(user);
 });
@@ -38,7 +38,7 @@ const updateUser = catchAsync(async (req, res) => {
 
   if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'user not found');
   res.send(user);
-})
+});
 
 const checkEmail = catchAsync(async (req, res) => {
   if (await User.isEmailTaken(req.body.email)) res.send({ isValid: false });
