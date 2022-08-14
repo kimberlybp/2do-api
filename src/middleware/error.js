@@ -20,6 +20,7 @@ const errorHandler = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'production' && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
     message = 'internal server error';
+    console.log(err)
   }
 
   res.locals.errorMessage = err.message;
