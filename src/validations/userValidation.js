@@ -7,7 +7,7 @@ const createUser = {
     first_name: Joi.string().required(),
     last_name: Joi.string().required(),
     email: Joi.string().required().email(),
-    profile_pic_url: Joi.string().allow(null, ''),
+    profile_pic_url: Joi.string().allow(null, '')
   })
 };
 
@@ -25,7 +25,7 @@ const getUserBySub = {
 
 const updateUser = {
   params: Joi.object().keys({
-    id: Joi.required().custom(objectId),
+    id: Joi.required().custom(objectId)
   }),
   body: Joi.object()
     .keys({
@@ -33,9 +33,9 @@ const updateUser = {
       last_name: Joi.string(),
       email: Joi.string().email(),
       profile_pic_url: Joi.string().allow(null, ''),
-      sub: Joi.string(),
+      sub: Joi.string()
     })
-    .min(1),
+    .min(1)
 };
 
 const checkEmail = {
